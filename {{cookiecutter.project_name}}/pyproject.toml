@@ -1,0 +1,52 @@
+[tool.black]
+line-length = 100
+target-version = ['py37']
+exclude = '''
+(
+  \.eggs
+  |\.git
+  |\.hg
+  |\.mypy_cache
+  |\.nox
+  |\.tox
+  |\.venv
+  |_build
+  |buck-out
+  |build
+  |dist
+)
+'''
+
+
+[tool.isort]
+line_length = 100
+sections = ["FUTURE", "STDLIB", "DJANGO", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+multi_line_output = 3
+known_django = "django"
+profile = "django"
+src_paths = "app"
+
+
+[tool.poetry]
+name = "evrone_django_template"
+version = "0.1.0"
+description = ""
+authors = ["Evrone <mail@evrone.com>"]
+license = "MIT"
+
+
+[tool.poetry.dependencies]
+python = "^3.7"
+djangorestframework = "^3.12.2"
+Django = "^3.1.7"
+
+
+[tool.poetry.dev-dependencies]
+black = "^20.8b1"
+isort = "^5.7.0"
+pre-commit = "^2.11.1"
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
