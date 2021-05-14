@@ -8,8 +8,9 @@
 4. Install [docker-compose](https://docs.docker.com/compose/install/)
 5. Run command `poetry install`
 6. Run command `pre-commit install`
-7. Run command `python manage.py migrate`
-8. Run command `python manage.py runserver`
+7. Run command `docker-compose up -d`
+8. Run command `python manage.py migrate`
+9. Run command `python manage.py runserver`
 
 
 ## How to deploy
