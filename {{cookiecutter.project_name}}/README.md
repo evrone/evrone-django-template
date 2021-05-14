@@ -6,7 +6,7 @@
 2. Install [poetry](https://python-poetry.org).
 3. Install [Docker](https://docs.docker.com/engine/install/)
 4. Install [docker-compose](https://docs.docker.com/compose/install/)
-5. Run command `poetry install`
+5. Run command `poetry install && poetry shell`
 6. Run command `pre-commit install`
 7. Run command `docker-compose up -d`
 8. Run command `python manage.py migrate`
