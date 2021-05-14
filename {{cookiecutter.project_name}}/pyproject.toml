@@ -1,6 +1,6 @@
 [tool.black]
 line-length = 100
-target-version = ['py37']
+target-version = ['py38']
 exclude = '''
 (
   \.eggs
@@ -37,9 +37,9 @@ license = "MIT"
 
 
 [tool.poetry.dependencies]
-python = "^3.7"
-djangorestframework = "^3.12.2"
-Django = "^3.1.7"
+python = "^3.8"
+djangorestframework = "^3.12"
+Django = "^3.2"
 
 
 [tool.poetry.dev-dependencies]
