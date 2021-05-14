@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  database:
+    image: postgres:13.2
+    container_name: {{cookiecutter.project_name}}-database
+    restart: always
+      environment:
+        POSTGRES_PASSWORD: {{cookiecutter.project_name}}
+        POSTGRES_USER: {{cookiecutter.project_name}}
+        POSTGRES_DB: {{cookiecutter.project_name}}
+    ports:
+      - "5432:5432"

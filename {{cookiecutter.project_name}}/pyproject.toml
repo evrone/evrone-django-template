@@ -40,12 +40,14 @@ license = "MIT"
 python = "^3.8"
 djangorestframework = "^3.12"
 Django = "^3.2"
+environs = "^9.3.2"
 
 
 [tool.poetry.dev-dependencies]
 black = "^20.8b1"
 isort = "^5.7.0"
 pre-commit = "^2.11.1"
+pytest-django = "^4.2.0"
 
 
 [build-system]
