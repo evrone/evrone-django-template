@@ -8,11 +8,6 @@
 * Install [docker-compose](https://docs.docker.com/compose/install/)
 * Run command `poetry install && poetry shell`
 * Run command `pre-commit install`
-* Generate secret key at `https://djecrety.ir`
-* Create file `.env` at `app/settings` level with following content:
-  ```
-  SECRET_KEY=<paste-here-secret-key-from-previous-step>
-  ```
 * Run command `docker-compose up -d`
 * Run command `python manage.py migrate`
 * Run command `python manage.py runserver`
