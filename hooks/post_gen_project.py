@@ -1,3 +1,4 @@
+import os
 import secrets
 from pathlib import Path
 
@@ -24,7 +25,6 @@ def write_env_file_with_secret_key():
     """
 
     base_dir = Path.cwd()
-    print(base_dir)
     env_file_path = str(base_dir / "app" / "settings" / ".env")
 
     with open(env_file_path, mode="w") as env_file:
@@ -32,6 +32,7 @@ def write_env_file_with_secret_key():
         secret_key_line = f"SECRET_KEY={secret_key}"
 
         env_file.write(secret_key_line)
+        env_file.write(os.linesep)
 
 
 if __name__ == "__main__":
