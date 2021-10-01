@@ -24,8 +24,7 @@ def write_env_file_with_secret_key():
     """
 
     base_dir = Path.cwd()
-    print(base_dir)
-    env_file_path = str(base_dir / "settings" / ".env")
+    env_file_path = str(base_dir / "app" / "settings" / ".env")
 
     with open(env_file_path, mode="w") as env_file:
         secret_key = get_random_secret_key()
