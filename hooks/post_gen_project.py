@@ -1,5 +1,20 @@
-from django.conf import settings
-from django.core.management.utils import get_random_secret_key
+import secrets
+from pathlib import Path
+
+RANDOM_CHARACTERS = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)"
+SECRET_KEY_LENGTH = 50
+
+
+def get_random_secret_key():
+    """
+    Copied and adopted from `django.utils.crypto.get_random_string`
+    """
+
+    secret_key_chars = [
+        secrets.choice(RANDOM_CHARACTERS) for _ in range(SECRET_KEY_LENGTH)
+    ]
+
+    return "".join(secret_key_chars)
 
 
 def write_env_file_with_secret_key():
@@ -8,8 +23,9 @@ def write_env_file_with_secret_key():
     generation.
     """
 
-    base_dir = settings.BASE_DIR
-    env_file_path = base_dir / "settings" / ".env"
+    base_dir = Path.cwd()
+    print(base_dir)
+    env_file_path = str(base_dir / "settings" / ".env")
 
     with open(env_file_path, mode="w") as env_file:
         secret_key = get_random_secret_key()
