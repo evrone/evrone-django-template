@@ -32,6 +32,9 @@ def write_env_file_with_secret_key():
         secret_key_line = f"SECRET_KEY={secret_key}"
 
         env_file.write(secret_key_line)
+
+        # add empty line at end of file
+        env_file.write(os.linesep)
         env_file.write(os.linesep)
 
 

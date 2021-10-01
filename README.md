@@ -8,10 +8,7 @@
 
 # TODO
 - Add Evrone branding
-- Add deployment instructions
-- Add optional celery configuration 
-- Add Evrone Helm chart
 - Add description and example of large project layout
-- Add secret key generation
+- ~~Add secret key generation~~
 - ~~Add OpenAPI generator~~
 - ~~Add `health` endpoint~~
