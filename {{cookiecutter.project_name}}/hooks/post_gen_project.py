@@ -9,7 +9,7 @@ def write_env_file_with_secret_key():
     """
 
     base_dir = settings.BASE_DIR
-    env_file_path = base_dir / "settings/.env"
+    env_file_path = base_dir / "settings" / ".env"
 
     with open(env_file_path, mode="w") as env_file:
         secret_key = get_random_secret_key()
