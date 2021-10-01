@@ -13,5 +13,5 @@
 - Add Evrone Helm chart
 - Add description and example of large project layout
 - Add secret key generation
-+ Add OpenAPI generator
-+ Add `health` endpoint
+- ~~Add OpenAPI generator~~
+- ~~Add `health` endpoint~~
