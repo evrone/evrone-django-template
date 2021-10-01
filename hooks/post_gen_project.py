@@ -24,6 +24,7 @@ def write_env_file_with_secret_key():
     """
 
     base_dir = Path.cwd()
+    print(base_dir)
     env_file_path = str(base_dir / "{{ cookiecutter.project_name }}" / "app" / "settings" / ".env")
 
     with open(env_file_path, mode="w") as env_file:
@@ -31,3 +32,7 @@ def write_env_file_with_secret_key():
         secret_key_line = f"SECRET_KEY={secret_key}"
 
         env_file.write(secret_key_line)
+
+
+if __name__ == "__main__":
+    write_env_file_with_secret_key()
