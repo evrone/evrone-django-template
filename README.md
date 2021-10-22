@@ -6,19 +6,20 @@
 ## About
 Template for Django projects based on:
 - Simplicity
-- Ready for production
+- Purity
 - [Two Scoops of Django](https://www.feldroy.com/books/two-scoops-of-django-3-x)
 - [The Twelve-Factor App](https://12factor.net) 
 
 
 ## Features
-- Settings based on environment variables.
-- [`.pre-commit`](https://pre-commit.com) hooks with predefined `black` and `isort` configs.
+- [`poetry`](https://python-poetry.org) modern Python package manager.
+- [OpenAPI](https://spec.openapis.org/oas/latest.html) endpoint at `/openapi`
+- [`.pre-commit`](https://pre-commit.com) hooks with predefined [`black`]([`poetry`](https://python-poetry.org) modern Python package manager.) and [`isort`](https://github.com/PyCQA/isort) configs.
 - [`pytest`](https://docs.pytest.org/en/6.2.x/) with basic setup
 - Basic dependencies such `django`, `djangorestframework` etc.
 - `docker-compose` infrastructure file with database ([PostgreSQL](https://www.postgresql.org)) and cache ([Redis](https://redis.io)).
 - Dockerfile for application deployment
-- [OpenAPI](https://spec.openapis.org/oas/latest.html) endpoint at `/openapi`
+- Settings based on environment variables.
 - Health check endpoint at `/health`
 
 
