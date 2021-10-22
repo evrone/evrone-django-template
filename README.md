@@ -1,7 +1,6 @@
 # Evrone Django Template
 
-![https://evrone.com/?utm_source=evrone-django-template](https://img.shields.io/badge/%2Fevrone-%20%20-blue)  
-![https://github.com/evrone/evrone-django-template/blob/master/LICENSE](https://img.shields.io/github/license/evrone/evrone-django-template)  
+![https://evrone.com/?utm_source=evrone-django-template](https://img.shields.io/badge/%2Fevrone-%20%20-blue) ![https://github.com/evrone/evrone-django-template/blob/master/LICENSE](https://img.shields.io/github/license/evrone/evrone-django-template)  
 
 
 ## About
