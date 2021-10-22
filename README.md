@@ -1,6 +1,7 @@
 # Evrone Django Template
 
-[<img src="https://evrone.com/logo/evrone-sponsored-logo.png" width=231>](https://evrone.com/?utm_source=evrone-django-template)  
+![https://evrone.com/?utm_source=evrone-django-template](https://img.shields.io/badge/%2Fevrone-%20%20-blue)  
+![https://github.com/evrone/evrone-django-template/blob/master/LICENSE](https://img.shields.io/github/license/evrone/evrone-django-template)  
 
 
 ## About
@@ -26,3 +27,7 @@ Template for Django projects based on:
 1. Install [cookiecutter](https://github.com/cookiecutter/cookiecutter).
 2. Run command `cookiecutter git@github.com:evrone/evrone-django-template.git`.
 3. Follow instructions.
+
+---
+
+[<img src="https://evrone.com/logo/evrone-sponsored-logo.png" width=231>](https://evrone.com/?utm_source=evrone-django-template)
