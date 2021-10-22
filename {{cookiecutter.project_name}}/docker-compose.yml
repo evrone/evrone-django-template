@@ -11,3 +11,10 @@ services:
       POSTGRES_DB: {{cookiecutter.project_name}}
     ports:
       - "5432:5432"
+
+  cache:
+    image: redis:6.2.5
+    container_name: {{cookiecutter.project_name}}-cache
+    restart: always
+    ports:
+      - "6379:6379"
