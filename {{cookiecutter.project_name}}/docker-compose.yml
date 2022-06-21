@@ -5,6 +5,8 @@ services:
     image: postgres:13.2
     container_name: {{cookiecutter.project_name}}-database
     restart: always
+    volumes:
+      - {{cookiecutter.project_name}}-postgresql:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: {{cookiecutter.project_name}}
       POSTGRES_USER: {{cookiecutter.project_name}}
@@ -18,3 +20,17 @@ services:
     restart: always
     ports:
       - "6379:6379"
+
+  # Email testing
+  mailhog:
+    image: mailhog/mailhog:v1.0.1
+    container_name: { { cookiecutter.project_name } }-mailhog
+    volumes:
+      - ./docker-maildir:/maildir
+    command: [ "-storage=maildir", "-maildir-path=/maildir" ]
+    ports:
+      - '1025:1025'
+      - '8025:8025'
+
+volumes:
+    {{cookiecutter.project_name}}-postgresql:
