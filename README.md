@@ -18,6 +18,7 @@ Template for Django projects based on:
 - [`pytest`](https://docs.pytest.org/en/6.2.x/) with basic setup
 - Basic dependencies such `django`, `djangorestframework` etc.
 - `docker-compose` infrastructure file with database ([PostgreSQL](https://www.postgresql.org)) and cache ([Redis](https://redis.io)).
+- [mailhog](https://github.com/mailhog/MailHog) for testing emails
 - Dockerfile for application deployment
 - Settings based on environment variables.
 - Health check endpoint at `/health`
