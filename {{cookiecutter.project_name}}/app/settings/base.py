@@ -38,6 +38,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+
 ROOT_URLCONF = "settings.urls"
 
 TEMPLATES = [
@@ -61,11 +62,11 @@ WSGI_APPLICATION = "settings.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "ENGINE": "django.db.backends.postgresql",
         "NAME": env.str("DB_NAME", "{{cookiecutter.project_name}}"),
         "USER": env.str("DB_USER", "{{cookiecutter.project_name}}"),
         "PASSWORD": env.str("DB_PASSWORD", "{{cookiecutter.project_name}}"),
-        "HOST": env.str("DB_HOST", "localhost"),
+        "HOST": env.str("DB_HOST", "db"),
         "PORT": env.str("DB_PORT", "5432"),
     }
 }
@@ -93,9 +94,10 @@ TIME_ZONE = "UTC"
 
 USE_I18N = True
 
-USE_L10N = True
-
 USE_TZ = True
 
-
 STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR.parent / "static"
+STATIC_APP = BASE_DIR / "static"
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
