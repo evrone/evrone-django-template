@@ -7,7 +7,7 @@
 Template for Django projects based on:
 - Simplicity
 - Purity
-- [Two Scoops of Django](https://www.feldroy.com/books/two-scoops-of-django-3-x)
+- [Two Scoops of Django 3.X](https://daniel.feldroy.com/books/tech)
 - [The Twelve-Factor App](https://12factor.net) 
 
 
@@ -15,9 +15,9 @@ Template for Django projects based on:
 - [`poetry`](https://python-poetry.org) modern Python package manager.
 - [OpenAPI](https://spec.openapis.org/oas/latest.html) endpoint at `/openapi`
 - [`.pre-commit`](https://pre-commit.com) hooks with predefined [`black`]([`poetry`](https://python-poetry.org) modern Python package manager.) and [`isort`](https://github.com/PyCQA/isort) configs.
-- [`pytest`](https://docs.pytest.org/en/6.2.x/) with basic setup
+- [`pytest`](https://docs.pytest.org/en/8.0.x/) with basic setup
 - Basic dependencies such `django`, `djangorestframework` etc.
-- `docker-compose` infrastructure file with database ([PostgreSQL](https://www.postgresql.org)) and cache ([Redis](https://redis.io)).
+- `docker-compose` infrastructure file with database ([PostgreSQL](https://www.postgresql.org)).
 - [mailhog](https://github.com/mailhog/MailHog) for testing emails
 - Dockerfile for application deployment
 - Settings based on environment variables.

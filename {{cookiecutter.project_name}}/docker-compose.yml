@@ -1,8 +1,8 @@
 version: "3.9"
 
 services:
-  database:
-    image: postgres:13.2
+  db:
+    image: postgres:16
     container_name: {{cookiecutter.project_name}}-database
     restart: always
     volumes:
@@ -14,17 +14,24 @@ services:
     ports:
       - "5432:5432"
 
-  cache:
-    image: redis:6.2.5
-    container_name: {{cookiecutter.project_name}}-cache
+  django:
+    build:
+      context: .
     restart: always
+    volumes:
+      - ./app:/app
+      - ./static:/static
+    depends_on:
+      - db
+    working_dir: /app
+    command: [ "/wait-for-it.sh", "db:5432", "--", "../start-dev.sh" ]
     ports:
-      - "6379:6379"
+      - "8000:8000"
 
   # Email testing
   mailhog:
     image: mailhog/mailhog:v1.0.1
-    container_name: { { cookiecutter.project_name } }-mailhog
+    container_name: {{ cookiecutter.project_name }}-mailhog
     volumes:
       - ./docker-maildir:/maildir
     command: [ "-storage=maildir", "-maildir-path=/maildir" ]

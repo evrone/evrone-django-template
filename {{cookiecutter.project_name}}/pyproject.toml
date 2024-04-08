@@ -1,6 +1,47 @@
+[tool.poetry]
+name = "{{cookiecutter.project_name}}"
+version = "0.1.0"
+description = ""
+authors = ["Evrone <mail@evrone.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+djangorestframework = "^3.15.1"
+Django = "^5.0.4"
+environs = "^11.0.0"
+gunicorn = "^21.2.0"
+psycopg = { extras = ["binary", "pool"], version = "^3.1.18" }
+uritemplate = "^3.0.1"
+pytest = "^8.1.1"
+pytest-cov = "^5.0.0"
+pytest-django = "^4.8.0"
+
+[tool.poetry.dev-dependencies]
+black = "^24.3.0"
+isort = "^5.13.2"
+pre-commit = "^3.7.0"
+django-stubs = "^4.2.7"
+flake8 = "^7.0.0"
+flake8-bandit = "^4.1.1"
+flake8-broken-line = "^1.0.0"
+flake8-comprehensions = "^3.14.0"
+flake8-debugger = "^4.1.2"
+flake8-docstrings = "^1.7.0"
+flake8-eradicate = "^1.5.0"
+flake8-isort = "^6.1.1"
+flake8-quotes = "^3.4.0"
+flake8-string-format = "^0.3.0"
+flake8-pyproject = "^1.2.3"
+flake8-bugbear = "^24.2.6"
+flake8-rst-docstrings = "^0.3.0"
+mypy = "^1.9.0"
+pylint = "^3.1.0"
+safety = "^3.1.0"
+
 [tool.black]
 line-length = 100
-target-version = ['py38']
+target-version = ['py312']
 exclude = '''
 (
   \.eggs
@@ -17,7 +58,6 @@ exclude = '''
 )
 '''
 
-
 [tool.isort]
 line_length = 100
 sections = ["FUTURE", "STDLIB", "DJANGO", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
@@ -27,32 +67,203 @@ profile = "django"
 src_paths = "app"
 lines_after_imports = 2
 
-
-[tool.poetry]
-name = "{{cookiecutter.project_name}}"
-version = "0.1.0"
-description = ""
-authors = ["Evrone <mail@evrone.com>"]
-license = "MIT"
-
-
-[tool.poetry.dependencies]
-python = "^3.9"
-djangorestframework = "^3.12"
-Django = "^3.2"
-environs = "^9.3.2"
-gunicorn = "^20.1.0"
-psycopg2-binary = "^2.8"
-uritemplate = "^3.0.1"
-
-
-[tool.poetry.dev-dependencies]
-black = "^20.8b1"
-isort = "^5.7.0"
-pre-commit = "^2.11.1"
-pytest-django = "^4.2.0"
-
-
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.coverage.run]
+omit = [
+    "**/admin.py",
+    "**/admin/**",
+    "**/tests/**",
+    "**/migrations/**",
+    "**/management/**",
+    "**/urls.py",
+    "**/__init__/**",
+    "**/settings/**",
+    "manage.py",
+    "asgi.py",
+    "wsgi.py",
+]
+
+[tool.mypy]
+plugins = "mypy_django_plugin.main"
+
+[tool.django-stubs]
+django_settings_module = "app.settings.base"
+
+[tool.flake8]
+ignore = [
+    "C812", # missing trailing comma
+    "E701", # Multiple statements on one line (colon)
+    "D100", # Missing docstring in public module
+    "D101", # Missing docstring in public class
+    "D102", # Missing docstring in public method
+    "D103", # Missing docstring in public function
+    "D104", # Missing docstring in public package
+    "D105", # Missing docstring in magic method
+    "D106", # Missing docstring in public nested class
+    "D107", # Missing docstring in __init__
+    "D401", # First line should be in imperative mood
+    "N818", # exception name should be named with an Error suffix
+    "P103", # other string does contain unindexed parameters
+    "W291", # trailing whitespace
+    "W503", # line break before binary operator
+    "DAR101", # Missing parameter(s) in Docstring
+    "DAR101", # Missing parameter(s) in Docstring
+    "DAR201", # Missing "Returns" in Docstring
+    "DAR401", # Missing exception(s) in Raises section
+    "WPS110", # Found wrong variable name
+    "WPS111", # Found too short name
+    "WPS112", # Found private name pattern
+    "WPS115", # Found upper-case constant in a class
+    "WPS120", # Found regular name with trailing underscore
+    "WPS121", # Found usage of a variable marked as unused
+    "WPS122", # Found all unused variables definition
+    "WPS226", # Found string literal over-use
+    "WPS305", # Found `f` string
+    "WPS306", # Found class without a base class
+    "WPS237", # Found a too complex `f` string
+    "WPS323", # Found `%` string formatting
+    "WPS326", # Found implicit string concatenation
+    "WPS329", # Found useless `except` case
+    "WPS331", # Found variables that are only used for `return`:
+    "WPS337", # Found multiline conditions
+    "WPS338", # Found incorrect order of methods in a class
+    "WPS347", # Found vague import that may cause confusion
+    "WPS348", # Found a line that starts with a dot
+    "WPS360", # Found an unnecessary use of a raw string
+    "WPS404", # Found complex default value
+    "WPS407", # Found mutable module constant
+    "WPS412", # Found `__init__.py` module with logic
+    "WPS420", # Found wrong keyword
+    "WPS421", # Found wrong function call
+    "WPS428", # Found statement that has no effect (for `...`)
+    "WPS432", # Found magic number
+    "WPS433", # Found nested import
+    "WPS437", # Found protected attribute usage
+    "WPS440", # Found block variables overlap
+    "WPS441", # Found control variable used after block
+    "WPS453", # Found executable mismatch: shebang is present but the file is not executable
+    "WPS458", # Found imports collision
+    "WPS529", # Found implicit `.get()` dict usage
+    "WPS531", # Found simplifiable returning `if` condition in a function
+    "WPS602", # Found using `@staticmethod`
+    "WPS604", # Found incorrect node inside `class` body
+    "WPS608", # Found incorrect `super()` call: remove arguments
+    "WPS615", # Found unpythonic getter or sette
+]
+per-file-ignores = [
+    "**/settings/*.py:S101",
+    "**/settings/*.py:WPS425",
+    "**/tests/*.py:S101",
+]
+exclude = [
+    ".git",
+    "__pycache__",
+    ".venv",
+    "venv",
+    "**/tests/*",
+    "**/migrations/*",
+    "**/settings/*",
+    "snapshots",
+]
+max-arguments = 12
+max-imports = 20
+max-import-from-members = 10
+max-expressions = 12
+max-methods = 10
+max-local-variables = 16
+max-module-members = 20
+max-try-body-length = 10
+max-cognitive-average = 10
+max-cognitive-score = 30
+max-annotation-complexity = 4
+max-line-complexity = 15
+max-complexity = 15
+max-name-length = 60
+max-line-length = 100
+count = true
+
+
+[tool.pylint.main]
+ignore = [
+    ".git",
+    "__pycache__",
+    ".venv",
+    "venv",
+    "tests",
+    "migrations",
+    "settings",
+    "snapshots",
+]
+
+[tool.pylint.master]
+load-plugins=[
+    "pylint_django",
+]
+django-settings-module = "app.settings.base"
+
+[tool.pylint.basic]
+good-names = ["i", "j", "k", "v", "ex", "pk", "r", "_"]
+
+[tool.pylint.classes]
+# List of method names used to declare (i.e. assign) instance attributes.
+defining-attr-methods = ["__init__", "__new__", "setUp", "asyncSetUp", "__post_init__"]
+
+# List of member names, which should be excluded from the protected access
+# warning.
+exclude-protected = ["_asdict", "_fields", "_replace", "_source", "_make", "os._exit"]
+
+# List of valid names for the first argument in a class method.
+valid-classmethod-first-arg = ["cls"]
+
+# List of valid names for the first argument in a metaclass class method.
+valid-metaclass-classmethod-first-arg = ["mcs"]
+
+[tool.pylint.design]
+max-args = 12
+max-locals = 16
+max-attributes = 30
+max-parents = 20
+min-public-methods = 0
+max-public-methods = 10
+max-branches = 15
+max-statements = 50
+max-bool-expr = 10
+max-returns = 10
+
+[tool.pylint.format]
+max-line-length = 100
+max-module-lines = 500
+
+[tool.pylint."messages control"]
+confidence = [
+    "HIGH",
+    "CONTROL_FLOW",
+    "INFERENCE",
+    "INFERENCE_FAILURE",
+    "UNDEFINED",
+]
+disable = [
+    "missing-module-docstring",
+    "missing-class-docstring",
+    "missing-function-docstring",
+    "unused-argument",
+    "redefined-builtin",
+    "import-outside-toplevel",
+    "no-else-return",
+    "unspecified-encoding",
+    "duplicate-code",
+    "super-with-arguments",
+    "unsubscriptable-object",
+    "abstract-method",
+]
+
+[tool.pylint.typecheck]
+ignored-classes = [
+    "optparse.Values",
+    "thread._local",
+    "_thread._local",
+    "argparse.Namespace",
+]
