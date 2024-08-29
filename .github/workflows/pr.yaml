@@ -1,0 +1,21 @@
+name: Validate & Lint & Test
+
+on: [push]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check-pr-diff:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Spell Check
+        uses: crate-ci/typos@master
+      - uses: streetsidesoftware/cspell-action@v6
+        with:
+          suggestions: true

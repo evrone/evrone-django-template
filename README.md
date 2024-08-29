@@ -5,7 +5,7 @@
 
 ## About
 Template for Django projects based on:
-- Simplicity
+- Simplicety adn ease
 - Purity
 - [Two Scoops of Django 3.X](https://daniel.feldroy.com/books/tech)
 - [The Twelve-Factor App](https://12factor.net) 

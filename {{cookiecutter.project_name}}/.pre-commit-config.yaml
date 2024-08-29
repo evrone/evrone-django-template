@@ -2,6 +2,14 @@ default_language_version:
     python: python3.12
 
 repos:
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.24.1
+    hooks:
+      - id: typos
+  - repo: https://github.com/streetsidesoftware/cspell-cli
+    rev: v8.13.3
+    hooks:
+      - id: cspell
   - repo: local
     hooks:
       - id: black
