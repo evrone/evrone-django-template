@@ -76,3 +76,8 @@ lint:
 
 safety:
 	poetry run safety check --policy-file=.safety-policy.yml
+
+check-changed-loc:
+	chmod +x ./scripts/pr-max-diff-checker.sh
+	# WARNING: Adopt arguments for project specific requirements
+	./scripts/pr-max-diff-checker.sh 300 origin/master
