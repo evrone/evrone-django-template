@@ -38,5 +38,21 @@ def write_env_file_with_secret_key():
         env_file.write(os.linesep)
 
 
+def remove_poetry_files() -> None:
+    os.remove("pyproject.toml")
+    os.remove("poetry.lock")
+
+
+def remove_uv_files() -> None:
+    os.remove("pyproject-uv.toml")
+    os.remove("uv.lock")
+
+
 if __name__ == "__main__":
     write_env_file_with_secret_key()
+
+    if "{{ cookiecutter.package_manager }}" == "Poetry":
+        remove_uv_files()
+    elif "{{ cookiecutter.package_manager }}" == "uv":
+        os.rename("pyproject-uv.toml", "pyproject.toml")
+        remove_poetry_files()

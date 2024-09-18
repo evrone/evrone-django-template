@@ -5,6 +5,10 @@ docker_compose_path = "docker-compose.yml"
 DC = docker-compose -f $(docker_compose_path)
 DC_RUN = $(DC) run --rm
 DC_RUN_MNG = $(DC_RUN) django python manage.py
+{%- if cookiecutter.package_manager == 'Poetry' %}
+MANAGER = poetry
+{%- if cookiecutter.package_manager == 'uv' %}
+MANAGER = uv
 
 ###################################################################################################
 ## Build/run/stop/etc. ############################################################################
@@ -46,7 +50,7 @@ migrate: # apply db migrations
 
 test:
 	@echo 'Running tests with arguments: '$(pytest-args)
-	$(DC_RUN) django poetry run pytest --ds=settings.test -v $(pytest-args) .
+	$(DC_RUN) django $(MANAGER) run pytest --ds=settings.test -v $(pytest-args) .
 
 test-coverage:
 	@echo 'Running test coverage with arguments: '$(pytest-args)
@@ -56,34 +60,43 @@ test-coverage:
 ## Code tools #####################################################################################
 
 install-pre-commit:
-	poetry run pre-commit install
+	$(MANAGER) run pre-commit install
 
 check:
 {%- if cookiecutter.linter == 'Flake8' %}
-	poetry run black --check backend
-	poetry run isort --check backend
+	$(MANAGER) run black --check backend
+	$(MANAGER) run isort --check backend
 {%- endif %}
 {%- if cookiecutter.linter == 'Ruff' %}
-	poetry run ruff check backend
+	$(MANAGER) run ruff check backend
 
 format:
 {%- if cookiecutter.linter == 'Flake8' %}
-	poetry run black .
-	poetry run isort .
+	$(MANAGER) run black .
+	$(MANAGER) run isort .
 {%- endif %}
 {%- if cookiecutter.linter == 'Ruff' %}
-	poetry run ruff check --fix .
+	$(MANAGER) run ruff check --fix .
 
 lint:
 {%- if cookiecutter.linter == 'Flake8' %}
-	poetry run flake8 --inline-quotes '"'
+	$(MANAGER) run flake8 --inline-quotes '"'
 	make check
+
+format:
+	$(MANAGER) run black .
+	$(MANAGER) run isort .
+
+lint:
+	$(MANAGER) run black --check backend
+	$(MANAGER) run isort --check backend
+	$(MANAGER) run flake8 --inline-quotes '"'
 	@# For some reason, mypy and pylint fails to resolve PYTHONPATH, set manually.
-	PYTHONPATH=./app poetry run pylint app
-	PYTHONPATH=./app poetry run mypy --namespace-packages --show-error-codes app --check-untyped-defs --ignore-missing-imports --show-traceback
+	PYTHONPATH=./app $(MANAGER) run pylint app
+	PYTHONPATH=./app $(MANAGER) run mypy --namespace-packages --show-error-codes app --check-untyped-defs --ignore-missing-imports --show-traceback
 
 safety:
-	poetry run safety check --policy-file=.safety-policy.yml
+	$(MANAGER) run safety check --policy-file=.safety-policy.yml
 
 check-changed-loc:
 	chmod +x ./scripts/pr-max-diff-checker.sh
