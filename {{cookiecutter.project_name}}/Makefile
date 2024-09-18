@@ -59,17 +59,25 @@ install-pre-commit:
 	poetry run pre-commit install
 
 check:
+{%- if cookiecutter.linter == 'Flake8' %}
 	poetry run black --check backend
 	poetry run isort --check backend
+{%- endif %}
+{%- if cookiecutter.linter == 'Ruff' %}
+	poetry run ruff check backend
 
 format:
+{%- if cookiecutter.linter == 'Flake8' %}
 	poetry run black .
 	poetry run isort .
+{%- endif %}
+{%- if cookiecutter.linter == 'Ruff' %}
+	poetry run ruff check --fix .
 
 lint:
-	poetry run black --check backend
-	poetry run isort --check backend
+{%- if cookiecutter.linter == 'Flake8' %}
 	poetry run flake8 --inline-quotes '"'
+	make check
 	@# For some reason, mypy and pylint fails to resolve PYTHONPATH, set manually.
 	PYTHONPATH=./app poetry run pylint app
 	PYTHONPATH=./app poetry run mypy --namespace-packages --show-error-codes app --check-untyped-defs --ignore-missing-imports --show-traceback

@@ -15,3 +15,8 @@ repos:
         entry: isort app
         language: python
         types: [python]
+      - id: ruff
+        name: ruff
+        entry: ruff check app
+        language: python
+        types: [python]
