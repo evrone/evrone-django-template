@@ -1,0 +1,21 @@
+name: Validate & Lint & Test
+
+on: [pull_request]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check-pr-diff:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check PR diff size
+        uses: ./.github/actions/large-pr-check
+        with:
+          target_branch: ${{ github.event.pull_request.base.ref }}
+          max_lines_changed: 100
