@@ -19,3 +19,6 @@ jobs:
         with:
           target_branch: ${{ github.event.pull_request.base.ref }}
           max_lines_changed: 100
+
+      - name: Spell Check
+        uses: crate-ci/typos@master
