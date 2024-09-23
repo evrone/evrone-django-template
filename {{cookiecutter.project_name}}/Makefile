@@ -82,15 +82,6 @@ lint:
 {%- if cookiecutter.linter == 'Flake8' %}
 	$(MANAGER) run flake8 --inline-quotes '"'
 	make check
-
-format:
-	$(MANAGER) run black .
-	$(MANAGER) run isort .
-
-lint:
-	$(MANAGER) run black --check backend
-	$(MANAGER) run isort --check backend
-	$(MANAGER) run flake8 --inline-quotes '"'
 	@# For some reason, mypy and pylint fails to resolve PYTHONPATH, set manually.
 	PYTHONPATH=./app $(MANAGER) run pylint app
 	PYTHONPATH=./app $(MANAGER) run mypy --namespace-packages --show-error-codes app --check-untyped-defs --ignore-missing-imports --show-traceback
