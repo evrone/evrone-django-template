@@ -17,11 +17,12 @@ pytest = "^8.1.1"
 pytest-cov = "^5.0.0"
 pytest-django = "^4.8.0"
 
-[tool.poetry.group.dev.dependencies]
-black = "^24.3.0"
-isort = "^5.13.2"
+[tool.poetry.dev-dependencies]
 pre-commit = "^3.7.0"
 django-stubs = "^4.2.7"
+{%- if cookiecutter.linter == 'Flake8' %}
+isort = "^5.13.2"
+black = "^24.3.0"
 flake8 = "^7.0.0"
 flake8-bandit = "^4.1.1"
 flake8-broken-line = "^1.0.0"
@@ -35,6 +36,9 @@ flake8-string-format = "^0.3.0"
 flake8-pyproject = "^1.2.3"
 flake8-bugbear = "^24.2.6"
 flake8-rst-docstrings = "^0.3.0"
+{%- endif %}
+{%- if cookiecutter.linter == 'Ruff' %}
+ruff = "^0.5.7"
 mypy = "^1.9.0"
 pylint = "^3.1.0"
 safety = "^3.1.0"
@@ -42,6 +46,7 @@ pytest-randomly = "^3.15.0"
 faker = "^28.4.1"
 factory-boy = "^3.3.1"
 
+{%- if cookiecutter.linter == 'Flake8' %}
 [tool.black]
 line-length = 100
 target-version = ['py312']
@@ -69,6 +74,7 @@ known_django = "django"
 profile = "django"
 src_paths = "app"
 lines_after_imports = 2
+{%- endif %}
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -95,6 +101,7 @@ plugins = "mypy_django_plugin.main"
 [tool.django-stubs]
 django_settings_module = "app.settings.base"
 
+{%- if cookiecutter.linter == 'Flake8' %}
 [tool.flake8]
 ignore = [
     "C812", # missing trailing comma
@@ -187,6 +194,7 @@ max-complexity = 15
 max-name-length = 60
 max-line-length = 100
 count = true
+{%- endif %}
 
 
 [tool.pylint.main]
@@ -270,3 +278,54 @@ ignored-classes = [
     "_thread._local",
     "argparse.Namespace",
 ]
+
+
+{%- if cookiecutter.linter == 'Ruff' %}
+[tool.ruff]
+src = ["{{cookiecutter.project_name}}"]
+line-length = 99
+unsafe-fixes = true
+extend-exclude = [
+    "docs/*",
+    ".venv",
+    "venv",
+]
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "COM812", # Trailing comma missing
+    "D100", # Missing docstring in public module
+    "D101", # Missing docstring in public class
+    "D102", # Missing docstring in public method
+    "D103", # Missing docstring in public function
+    "D104", # Missing docstring in public package
+    "D105", # Missing docstring in magic method
+    "D106", # Missing docstring in public nested class
+    "D107", # Missing docstring in __init__
+    "FBT001", # Boolean-typed positional argument in function definition
+    "FBT002", # Boolean default positional argument in function definition
+    "N818", # Exception name should be named with Error suffix
+    "PT004", # Deprecated error, will be removed in future release
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+    "S101", # Use of assert detected
+    "S106", # Possible hardcoded password assigned to argument
+]
+
+[tool.ruff.lint.isort]
+lines-after-imports = 2
+
+[tool.ruff.lint.pylint]
+max-args = 12
+max-public-methods = 10
+max-locals = 16
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+{%- endif %}
