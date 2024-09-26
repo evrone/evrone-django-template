@@ -30,11 +30,9 @@ dev-dependencies = [
     "flake8-broken-line==1.0.0",
     "flake8-comprehensions==3.14.0",
     "flake8-debugger==4.1.2",
-    "flake8-docstrings==1.7.0",
     "flake8-eradicate==1.5.0",
     "flake8-isort==6.1.1",
     "flake8-quotes==3.4.0",
-    "flake8-string-format==0.3.0",
     "flake8-pyproject==1.2.3",
     "flake8-bugbear==24.2.6",
     "flake8-rst-docstrings==0.3.0",
@@ -102,7 +100,6 @@ django_settings_module = "app.settings.base"
 
 [tool.flake8]
 ignore = [
-    "C812", # missing trailing comma
     "E701", # Multiple statements on one line (colon)
     "D100", # Missing docstring in public module
     "D101", # Missing docstring in public class
@@ -113,58 +110,9 @@ ignore = [
     "D106", # Missing docstring in public nested class
     "D107", # Missing docstring in __init__
     "D401", # First line should be in imperative mood
-    "N818", # exception name should be named with an Error suffix
     "P103", # other string does contain unindexed parameters
     "W291", # trailing whitespace
     "W503", # line break before binary operator
-    "DAR101", # Missing parameter(s) in Docstring
-    "DAR101", # Missing parameter(s) in Docstring
-    "DAR201", # Missing "Returns" in Docstring
-    "DAR401", # Missing exception(s) in Raises section
-    "WPS110", # Found wrong variable name
-    "WPS111", # Found too short name
-    "WPS112", # Found private name pattern
-    "WPS115", # Found upper-case constant in a class
-    "WPS120", # Found regular name with trailing underscore
-    "WPS121", # Found usage of a variable marked as unused
-    "WPS122", # Found all unused variables definition
-    "WPS226", # Found string literal over-use
-    "WPS305", # Found `f` string
-    "WPS306", # Found class without a base class
-    "WPS237", # Found a too complex `f` string
-    "WPS323", # Found `%` string formatting
-    "WPS326", # Found implicit string concatenation
-    "WPS329", # Found useless `except` case
-    "WPS331", # Found variables that are only used for `return`:
-    "WPS337", # Found multiline conditions
-    "WPS338", # Found incorrect order of methods in a class
-    "WPS347", # Found vague import that may cause confusion
-    "WPS348", # Found a line that starts with a dot
-    "WPS360", # Found an unnecessary use of a raw string
-    "WPS404", # Found complex default value
-    "WPS407", # Found mutable module constant
-    "WPS412", # Found `__init__.py` module with logic
-    "WPS420", # Found wrong keyword
-    "WPS421", # Found wrong function call
-    "WPS428", # Found statement that has no effect (for `...`)
-    "WPS432", # Found magic number
-    "WPS433", # Found nested import
-    "WPS437", # Found protected attribute usage
-    "WPS440", # Found block variables overlap
-    "WPS441", # Found control variable used after block
-    "WPS453", # Found executable mismatch: shebang is present but the file is not executable
-    "WPS458", # Found imports collision
-    "WPS529", # Found implicit `.get()` dict usage
-    "WPS531", # Found simplifiable returning `if` condition in a function
-    "WPS602", # Found using `@staticmethod`
-    "WPS604", # Found incorrect node inside `class` body
-    "WPS608", # Found incorrect `super()` call: remove arguments
-    "WPS615", # Found unpythonic getter or sette
-]
-per-file-ignores = [
-    "**/settings/*.py:S101",
-    "**/settings/*.py:WPS425",
-    "**/tests/*.py:S101",
 ]
 exclude = [
     ".git",
@@ -176,12 +124,10 @@ exclude = [
     "**/settings/*",
     "snapshots",
 ]
-max-arguments = 12
 max-imports = 20
 max-import-from-members = 10
 max-expressions = 12
 max-methods = 10
-max-local-variables = 16
 max-module-members = 20
 max-try-body-length = 10
 max-cognitive-average = 10
