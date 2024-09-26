@@ -36,9 +36,9 @@ flake8-string-format = "^0.3.0"
 flake8-pyproject = "^1.2.3"
 flake8-bugbear = "^24.2.6"
 flake8-rst-docstrings = "^0.3.0"
-{%- endif %}
-{%- if cookiecutter.linter == 'Ruff' %}
+{%- elif cookiecutter.linter == 'Ruff' %}
 ruff = "^0.5.7"
+{%- endif %}
 mypy = "^1.9.0"
 pylint = "^3.1.0"
 pylint-django = "^2.5.4"
@@ -48,6 +48,7 @@ faker = "^28.4.1"
 factory-boy = "^3.3.1"
 
 {%- if cookiecutter.linter == 'Flake8' %}
+
 [tool.black]
 line-length = 100
 target-version = ['py312']
@@ -103,6 +104,7 @@ plugins = "mypy_django_plugin.main"
 django_settings_module = "app.settings.base"
 
 {%- if cookiecutter.linter == 'Flake8' %}
+
 [tool.flake8]
 ignore = [
     "C812", # missing trailing comma
@@ -195,9 +197,8 @@ max-complexity = 15
 max-name-length = 60
 max-line-length = 100
 count = true
-{%- endif %}
+{%- elif cookiecutter.linter == 'Ruff' %}
 
-{%- if cookiecutter.linter == 'Ruff' %}
 [tool.ruff]
 src = ["{{cookiecutter.project_name}}"]
 line-length = 99

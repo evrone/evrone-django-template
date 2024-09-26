@@ -7,8 +7,9 @@ DC_RUN = $(DC) run --rm
 DC_RUN_MNG = $(DC_RUN) django python manage.py
 {%- if cookiecutter.package_manager == 'Poetry' %}
 MANAGER = poetry
-{%- if cookiecutter.package_manager == 'uv' %}
+{%- elif cookiecutter.package_manager == 'uv' %}
 MANAGER = uv
+{%- endif %}
 
 ###################################################################################################
 ## Build/run/stop/etc. ############################################################################
@@ -66,21 +67,20 @@ check:
 {%- if cookiecutter.linter == 'Flake8' %}
 	$(MANAGER) run black --check backend
 	$(MANAGER) run isort --check backend
-{%- endif %}
-{%- if cookiecutter.linter == 'Ruff' %}
+{%- elif cookiecutter.linter == 'Ruff' %}
 	$(MANAGER) run ruff check backend
+{%- endif %}
 
 format:
 {%- if cookiecutter.linter == 'Flake8' %}
 	$(MANAGER) run black .
 	$(MANAGER) run isort .
-{%- endif %}
-{%- if cookiecutter.linter == 'Ruff' %}
+{%- elif cookiecutter.linter == 'Ruff' %}
 	$(MANAGER) run ruff check --fix .
+{%- endif %}
 
 lint:
-{%- if cookiecutter.linter == 'Flake8' %}
-	$(MANAGER) run flake8 --inline-quotes '"'
+{{ '	$(MANAGER) run flake8 --inline-quotes \'\"\'' if cookiecutter.linter == 'Flake8' }}
 	make check
 	@# For some reason, mypy and pylint fails to resolve PYTHONPATH, set manually.
 	PYTHONPATH=./app $(MANAGER) run pylint app

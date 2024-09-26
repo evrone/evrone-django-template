@@ -24,6 +24,7 @@ dev-dependencies = [
     "isort==5.13.2",
     "pre-commit==3.7.0",
     "django-stubs==4.2.7",
+{%- if cookiecutter.linter == 'Flake8' %}
     "flake8==7.0.0",
     "flake8-bandit==4.1.1",
     "flake8-broken-line==1.0.0",
@@ -37,10 +38,15 @@ dev-dependencies = [
     "flake8-pyproject==1.2.3",
     "flake8-bugbear==24.2.6",
     "flake8-rst-docstrings==0.3.0",
+{%- elif cookiecutter.linter == 'Ruff' %}
+    "ruff==0.5.7",
+{%- endif %}
     "mypy==1.9.0",
     "pylint==3.1.0",
     "safety==3.1.0",
 ]
+
+{%- if cookiecutter.linter == 'Flake8' %}
 
 [tool.black]
 line-length = 100
@@ -69,6 +75,7 @@ known_django = "django"
 profile = "django"
 src_paths = "app"
 lines_after_imports = 2
+{%- endif%}
 
 [tool.coverage.run]
 omit = [
@@ -90,6 +97,8 @@ plugins = "mypy_django_plugin.main"
 
 [tool.django-stubs]
 django_settings_module = "app.settings.base"
+
+{%- if cookiecutter.linter == 'Flake8' %}
 
 [tool.flake8]
 ignore = [
