@@ -192,7 +192,56 @@ max-complexity = 15
 max-name-length = 60
 max-line-length = 100
 count = true
+{%- elif cookiecutter.linter == 'Ruff' %}
 
+[tool.ruff]
+src = ["{{cookiecutter.project_name}}"]
+line-length = 99
+unsafe-fixes = true
+extend-exclude = [
+    "docs/*",
+    ".venv",
+    "venv",
+]
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "COM812", # Trailing comma missing
+    "D100", # Missing docstring in public module
+    "D101", # Missing docstring in public class
+    "D102", # Missing docstring in public method
+    "D103", # Missing docstring in public function
+    "D104", # Missing docstring in public package
+    "D105", # Missing docstring in magic method
+    "D106", # Missing docstring in public nested class
+    "D107", # Missing docstring in __init__
+    "FBT001", # Boolean-typed positional argument in function definition
+    "FBT002", # Boolean default positional argument in function definition
+    "N818", # Exception name should be named with Error suffix
+    "PT004", # Deprecated error, will be removed in future release
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+    "S101", # Use of assert detected
+    "S106", # Possible hardcoded password assigned to argument
+]
+
+[tool.ruff.lint.isort]
+lines-after-imports = 2
+
+[tool.ruff.lint.pylint]
+max-args = 12
+max-public-methods = 10
+max-locals = 16
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+{%- endif %}
 
 [tool.pylint.main]
 ignore = [
@@ -205,29 +254,29 @@ ignore = [
     "settings",
     "snapshots",
 ]
+disable = [
+    "missing-module-docstring",
+    "missing-class-docstring",
+    "missing-function-docstring",
+    "unused-argument",
+    "redefined-builtin",
+    "import-outside-toplevel",
+    "no-else-return",
+    "unsubscriptable-object",
+    "abstract-method",
+]
 
 [tool.pylint.master]
 load-plugins=[
     "pylint_django",
+    "pylint.extensions.for_any_all",
+    "pylint.extensions.consider_ternary_expression",
+    "pylint.extensions.mccabe",
 ]
 django-settings-module = "app.settings.base"
 
 [tool.pylint.basic]
 good-names = ["i", "j", "k", "v", "ex", "pk", "r", "_"]
-
-[tool.pylint.classes]
-# List of method names used to declare (i.e. assign) instance attributes.
-defining-attr-methods = ["__init__", "__new__", "setUp", "asyncSetUp", "__post_init__"]
-
-# List of member names, which should be excluded from the protected access
-# warning.
-exclude-protected = ["_asdict", "_fields", "_replace", "_source", "_make", "os._exit"]
-
-# List of valid names for the first argument in a class method.
-valid-classmethod-first-arg = ["cls"]
-
-# List of valid names for the first argument in a metaclass class method.
-valid-metaclass-classmethod-first-arg = ["mcs"]
 
 [tool.pylint.design]
 max-args = 12
@@ -242,36 +291,4 @@ max-bool-expr = 10
 max-returns = 10
 
 [tool.pylint.format]
-max-line-length = 100
 max-module-lines = 500
-
-[tool.pylint."messages control"]
-confidence = [
-    "HIGH",
-    "CONTROL_FLOW",
-    "INFERENCE",
-    "INFERENCE_FAILURE",
-    "UNDEFINED",
-]
-disable = [
-    "missing-module-docstring",
-    "missing-class-docstring",
-    "missing-function-docstring",
-    "unused-argument",
-    "redefined-builtin",
-    "import-outside-toplevel",
-    "no-else-return",
-    "unspecified-encoding",
-    "duplicate-code",
-    "super-with-arguments",
-    "unsubscriptable-object",
-    "abstract-method",
-]
-
-[tool.pylint.typecheck]
-ignored-classes = [
-    "optparse.Values",
-    "thread._local",
-    "_thread._local",
-    "argparse.Namespace",
-]
