@@ -40,12 +40,14 @@ def write_env_file_with_secret_key():
 
 def remove_poetry_files() -> None:
     os.remove("pyproject.toml")
-    os.remove("poetry.lock")
+    if Path("poetry.lock").exists():
+        os.remove("poetry.lock")
 
 
 def remove_uv_files() -> None:
     os.remove("pyproject-uv.toml")
-    os.remove("uv.lock")
+    if Path("uv.lock").exists():
+        os.remove("uv.lock")
 
 
 if __name__ == "__main__":
