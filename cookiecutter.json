@@ -1,4 +1,6 @@
 {
-  "project_name": "evrone"
-  "linter": ["Ruff", "Flake8"]
+  "project_name": "evrone",
+  "linter": ["Ruff", "Flake8"],
+  "package_manager": ["Poetry", "uv"],
+  "_copy_without_render": [".github", "venv", ".venv"]
 }

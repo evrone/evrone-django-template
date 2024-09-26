@@ -1,51 +1,50 @@
-[tool.poetry]
+[project]
 name = "{{cookiecutter.project_name}}"
 version = "0.1.0"
 description = ""
 authors = ["Evrone <mail@evrone.com>"]
 license = "MIT"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "django==5.0.4",
+    "djangorestframework==3.15.1",
+    "environs==11.0.0",
+    "gunicorn==21.2.0",
+    "uritemplate==3.0.1",
+    "pytest==8.1.1",
+    "pytest-cov==5.0.0",
+    "pytest-django==4.8.0",
+    "psycopg[binary,pool]==3.1.18",
+]
 
-[tool.poetry.dependencies]
-python = "^3.12"
-djangorestframework = "^3.15.1"
-Django = "^5.0.4"
-environs = "^11.0.0"
-gunicorn = "^21.2.0"
-psycopg = { extras = ["binary", "pool"], version = "^3.1.18" }
-uritemplate = "^3.0.1"
-pytest = "^8.1.1"
-pytest-cov = "^5.0.0"
-pytest-django = "^4.8.0"
-
-[tool.poetry.dev-dependencies]
-pre-commit = "^3.7.0"
-django-stubs = "^4.2.7"
+[tool.uv]
+dev-dependencies = [
+    "black==24.3.0",
+    "isort==5.13.2",
+    "pre-commit==3.7.0",
+    "django-stubs==4.2.7",
 {%- if cookiecutter.linter == 'Flake8' %}
-isort = "^5.13.2"
-black = "^24.3.0"
-flake8 = "^7.0.0"
-flake8-bandit = "^4.1.1"
-flake8-broken-line = "^1.0.0"
-flake8-comprehensions = "^3.14.0"
-flake8-debugger = "^4.1.2"
-flake8-docstrings = "^1.7.0"
-flake8-eradicate = "^1.5.0"
-flake8-isort = "^6.1.1"
-flake8-quotes = "^3.4.0"
-flake8-string-format = "^0.3.0"
-flake8-pyproject = "^1.2.3"
-flake8-bugbear = "^24.2.6"
-flake8-rst-docstrings = "^0.3.0"
+    "flake8==7.0.0",
+    "flake8-bandit==4.1.1",
+    "flake8-broken-line==1.0.0",
+    "flake8-comprehensions==3.14.0",
+    "flake8-debugger==4.1.2",
+    "flake8-docstrings==1.7.0",
+    "flake8-eradicate==1.5.0",
+    "flake8-isort==6.1.1",
+    "flake8-quotes==3.4.0",
+    "flake8-string-format==0.3.0",
+    "flake8-pyproject==1.2.3",
+    "flake8-bugbear==24.2.6",
+    "flake8-rst-docstrings==0.3.0",
 {%- elif cookiecutter.linter == 'Ruff' %}
-ruff = "^0.5.7"
+    "ruff==0.5.7",
 {%- endif %}
-mypy = "^1.9.0"
-pylint = "^3.1.0"
-pylint-django = "^2.5.4"
-safety = "^3.1.0"
-pytest-randomly = "^3.15.0"
-faker = "^28.4.1"
-factory-boy = "^3.3.1"
+    "mypy==1.9.0",
+    "pylint==3.1.0",
+    "safety==3.1.0",
+]
 
 {%- if cookiecutter.linter == 'Flake8' %}
 
@@ -76,11 +75,7 @@ known_django = "django"
 profile = "django"
 src_paths = "app"
 lines_after_imports = 2
-{%- endif %}
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+{%- endif%}
 
 [tool.coverage.run]
 omit = [
