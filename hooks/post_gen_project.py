@@ -56,5 +56,5 @@ if __name__ == "__main__":
     if "{{ cookiecutter.package_manager }}" == "Poetry":
         remove_uv_files()
     elif "{{ cookiecutter.package_manager }}" == "uv":
-        os.rename("pyproject-uv.toml", "pyproject.toml")
         remove_poetry_files()
+        os.rename("pyproject-uv.toml", "pyproject.toml")
