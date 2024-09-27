@@ -1,0 +1,17 @@
+version: 2
+
+updates:
+  - package-ecosystem: "docker"
+    directory: "/{{cookiecutter.project_name}}"
+    schedule:
+      interval: "monthly"
+
+  - package-ecosystem: "github-actions"
+    directory: "/{{cookiecutter.project_name}}/.github"
+    schedule:
+      interval: "monthly"
+
+  - package-ecosystem: "pip"
+    directory: "/{{cookiecutter.project_name}}"
+    schedule:
+      interval: "monthly"
