@@ -39,9 +39,9 @@ dev-dependencies = [
 {%- elif cookiecutter.linter == 'Ruff' %}
     "ruff==0.5.7",
 {%- endif %}
+    "pip-audit==2.7.3",
     "mypy==1.9.0",
     "pylint==3.1.0",
-    "safety==3.1.0",
 ]
 
 {%- if cookiecutter.linter == 'Flake8' %}

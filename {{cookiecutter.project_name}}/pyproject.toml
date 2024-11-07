@@ -37,10 +37,10 @@ flake8-rst-docstrings = "^0.3.0"
 {%- elif cookiecutter.linter == 'Ruff' %}
 ruff = "^0.5.7"
 {%- endif %}
+pip-audit="^2.7.3"
 mypy = "^1.9.0"
 pylint = "^3.1.0"
 pylint-django = "^2.5.4"
-safety = "^3.1.0"
 pytest-randomly = "^3.15.0"
 faker = "^28.4.1"
 factory-boy = "^3.3.1"
