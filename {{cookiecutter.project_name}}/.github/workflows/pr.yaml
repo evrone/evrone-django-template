@@ -22,3 +22,8 @@ jobs:
 
       - name: Spell Check
         uses: crate-ci/typos@master
+
+      - name: Check project dependencies for vulnerabilities
+        uses: pypa/gh-action-pip-audit@v1.1.0
+        with:
+          vulnerability-service: osv

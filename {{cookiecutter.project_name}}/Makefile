@@ -86,8 +86,6 @@ lint:
 	PYTHONPATH=./app $(MANAGER) run pylint app
 	PYTHONPATH=./app $(MANAGER) run mypy --namespace-packages --show-error-codes app --check-untyped-defs --ignore-missing-imports --show-traceback
 
-safety:
-	$(MANAGER) run safety check --policy-file=.safety-policy.yml
 
 check-changed-loc:
 	chmod +x ./scripts/pr-max-diff-checker.sh
