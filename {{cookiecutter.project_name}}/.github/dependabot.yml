@@ -14,3 +14,18 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    groups:
+      production-security-updates:
+        applies-to: security-updates
+        dependency-type: "production"
+        update-types:
+          - "major"
+          - "patch"
+      production-version-updates:
+        applies-to: version-updates
+        dependency-type: "production"
+        update-types:
+          - "major"
+          - "patch"
+      development-dependencies:
+        dependency-type: "development"
