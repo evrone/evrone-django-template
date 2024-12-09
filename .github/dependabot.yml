@@ -1,0 +1,32 @@
+version: 2
+
+updates:
+  - package-ecosystem: "docker"
+    directory: "/{{cookiecutter.project_name}}"
+    schedule:
+      interval: "monthly"
+
+  - package-ecosystem: "github-actions"
+    directory: "/{{cookiecutter.project_name}}/.github"
+    schedule:
+      interval: "monthly"
+
+  - package-ecosystem: "pip"
+    directory: "/{{cookiecutter.project_name}}"
+    schedule:
+      interval: "monthly"
+    groups:
+      production-security-updates:
+        applies-to: security-updates
+        dependency-type: "production"
+        update-types:
+          - "major"
+          - "patch"
+      production-version-updates:
+        applies-to: version-updates
+        dependency-type: "production"
+        update-types:
+          - "major"
+          - "patch"
+      development-dependencies:
+        dependency-type: "development"
