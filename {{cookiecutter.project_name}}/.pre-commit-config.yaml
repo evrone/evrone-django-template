@@ -30,3 +30,8 @@ repos:
         entry: ruff check app
         language: python
         types: [python]
+      - id: unused_undeclared_deps
+        name: unused_undeclared_deps
+        entry: deptry backend
+        language: python
+        types: [python]
