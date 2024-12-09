@@ -84,6 +84,7 @@ lint:
 	make check
 	@# For some reason, mypy and pylint fails to resolve PYTHONPATH, set manually.
 	PYTHONPATH=./app $(MANAGER) run pylint app
+	$(MANAGER) run deptry backend
 	PYTHONPATH=./app $(MANAGER) run mypy --namespace-packages --show-error-codes app --check-untyped-defs --ignore-missing-imports --show-traceback
 
 
